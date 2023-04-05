@@ -39,6 +39,7 @@ export default NextAuth({
                 console.log(bcrypt.compareSync(credentials.password, user.password!))
 
                 if (user && (await bcrypt.compare(credentials.password, user.password!))) {
+                    console.log("true inside", user)
                     return { id: user.id, email: user.email, name: user.name, image: user.image };
                 }
 
@@ -51,6 +52,9 @@ export default NextAuth({
             (session as ExtendedSession).userId = user.id;
             return session;
         },
+    },
+    pages: {
+        signIn: "/login",
     },
     secret: process.env.NEXTAUTH_SECRET,
 });

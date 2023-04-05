@@ -46,6 +46,16 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  assistants    Assistant[]
+}
+
+model Assistant {
+  id               Int      @id @default(autoincrement())
+  name             String
+  firstMessageText String
+  createdAt        DateTime @default(now())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
 }
 
 model VerificationToken {

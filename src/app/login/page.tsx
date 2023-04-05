@@ -14,7 +14,7 @@ const Login = () => {
 
         try {
             const data = await signIn("credentials", {
-                redirect: false,
+                redirect: true,
                 email,
                 password,
             });
